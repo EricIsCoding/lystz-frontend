@@ -13,7 +13,7 @@ const Navigation =  (props) => {
     return(
       <Router>
       <Navbar bg="dark" variant="dark" expand="sm" >
-        <Navbar.Brand as={Link} to="/">Listz</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/">Lystz</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav"/>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
