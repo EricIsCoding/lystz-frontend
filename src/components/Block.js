@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Item from './Item';
 import Accordion from 'react-bootstrap/Accordion';
 import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import ItemInput from './ItemInput'
 import DeleteButton from './DeleteButton'
+import StarButton from './StarButton'
+class Block extends Component {
+    constructor(props) {
+        super(props)
 
-const Block = (props) => {
-
-    const renderItems = () => {
-        return props.items.map(item => {
+        this.state = {
+            id: props.id,
+            name: props.name,
+            creator: props.creator,
+            vendorId: props.vendorID,
+            items: props.items,
+            stars: 0
+        }
+    }
+    renderItems = () => {
+        return this.state.items.map(item => {
             return <Item 
             key={item.id} 
             id={item.id} 
@@ -17,42 +28,51 @@ const Block = (props) => {
             brand={item.attributes.brand} 
             description={item.attributes.description} 
             quantity={item.attributes.quantity} 
-            handleDelete={props.handleDelete}
+            handleDelete={this.state.handleDelete}
             vendorId={item.relationships.vendor.data.id}
             blockId={item.relationships.block.data.id}/>
         }) 
     }
 
-    const title = () => {
-        if(props.blockPage === true) {
-           return `${props.name} Store: ${props.vendor}`
+    title = () => {
+        if(this.state.blockPage === true) {
+           return `${this.state.name} Store: ${this.state.vendor}`
         } else {
-            return `${props.name}`
+            return `${this.state.name}`
         }
     }
 
-    const itemInput = () => {
-        if (!props.blockPage) {
+    itemInput = () => {
+        if (!this.state.blockPage) {
             return <ItemInput 
-            vendorId={props.vendorId} 
-            blockId={props.id} 
-            updateVendorPage={props.updateVendorPage} 
-            blockItems={props.items.length}/>
+            vendorId={this.state.vendorId}
+            blockId={this.state.id} 
+            updateVendorPage={this.state.updateVendorPage} 
+            blockItems={this.state.items.length}/>
         }
     }
 
-    return(
-        <Col lg={4}>
-        <Accordion>
-        <Card>
-            <h5>{title()}</h5>
-            <DeleteButton type="block" id={props.id} vendorId={props.vendorId}/>
-        </Card>
-           {renderItems()}
-           {itemInput()}
-        </Accordion>
-      </Col>
-    )
+    addStar = () => {
+        this.setState( 
+            {stars: this.state.stars + 1}
+        )
+    }
+
+    render() {
+        return(<Col lg={4}>
+            <Accordion>
+            <Card>
+                <h5>{this.title()}</h5>
+                <p>Number of Stars {this.state.stars}</p>
+                <StarButton handleClick={this.addStar}/>
+                <DeleteButton type="block" id={this.state.id} vendorId={this.state.vendorId}/>
+            </Card>
+               {this.renderItems()}
+               {this.itemInput()}
+            </Accordion>
+          </Col>)
+    }
+        
 }
 
 export default Block;
