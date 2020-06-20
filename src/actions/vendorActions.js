@@ -21,7 +21,7 @@ export const vendorAddSuccess = (vendor) => {
 export function fetchVendors() {
     return dispatch => {
         dispatch(beginFetchVendors)
-        return fetch('/api/vendors')
+        return fetch('api/vendors')
         .then(res => res.json())
         .then(json => {
             const normalized = Object.assign({}, normalize(json))
