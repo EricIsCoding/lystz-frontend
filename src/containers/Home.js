@@ -41,7 +41,7 @@ class Home extends Component {
             )
         } else {
             return (
-                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" />
+                <img alt="loading-gif" src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" />
            )
         }
     }
