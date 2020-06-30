@@ -10,7 +10,6 @@ export function blockReducer(state = {
         case "ADD_ITEM_SUCCESS":
             const addItemState = {...state}
             const itemData = {id: `${action.item.data.id}`, type: 'item'}
-            debugger
             addItemState[action.item.data.relationships.block.data.id].relationships.items.data = [...addItemState[action.item.data.relationships.block.data.id].relationships.items.data, itemData]
             
             return addItemState

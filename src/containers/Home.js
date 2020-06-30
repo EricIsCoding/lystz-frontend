@@ -34,7 +34,6 @@ class Home extends Component {
         if(this.props.vendors && this.props.vendors.legth !== 0) {
            return(
             <div>
-                <h1>Home</h1>
                 {this.renderVendors()}
                 <VendorInput />
             </div>

@@ -30,7 +30,7 @@ class BlockInput extends Component {
         this.setState( (prevState) => ({
             name: "",
             creator: "",
-            vendor_id: prevState.vendor_id,
+            vendor_id: prevState.vendor_id
         }))
     }
 

@@ -7,7 +7,6 @@ export const itemAddSuccess = (item) => {
 
 
 export function addItem(item) {
-    
     return dispatch => {
         const options = {
             method: 'POST',
